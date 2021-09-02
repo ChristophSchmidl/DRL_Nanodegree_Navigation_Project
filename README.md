@@ -2,6 +2,8 @@
 
 <img src="img/banana.gif" width="750">
 
+## Project 1: Navigation
+
 The first project in this Nanodegree is about the navigation of an Agent to collect yellow bananas and avoiding the blue ones.
 
 
