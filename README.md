@@ -1,5 +1,9 @@
-# DRL_Nanodegree_Navigation_Project
-First Project "Navigation" for the Udacity Nanodegree "Deep Reinforcement Learning"
+# Udacity Nanodegree - Deep Reinforcement Learning
+
+<img src="img/banana.gif" width="750">
+
+The first project in this Nanodegree is about the navigation of an Agent to collect yellow bananas and avoiding the blue ones.
+
 
 
 
