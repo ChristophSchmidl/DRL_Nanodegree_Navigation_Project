@@ -7,7 +7,7 @@
 The first project in this Nanodegree is about the navigation of an Agent to collect yellow bananas and avoiding the blue ones.
 
 
-### The Environment
+### Project Details
 
 A reward of +1 is provided for collecting a yellow banana, and a reward of -1 is provided for collecting a blue banana. Thus, the goal of your agent is to collect as many yellow bananas as possible while avoiding blue bananas.
 
@@ -21,8 +21,26 @@ The state space has 37 dimensions and contains the agent's velocity, along with 
 The task is episodic, and in order to solve the environment, your agent must get an average score of +13 over 100 consecutive episodes.
 
 
+
+### Getting Started
+
+- instructions for installing dependencies or downloading needed files.
+
+
+
+
+### Instructions
+
+- how to run the code in the repository, to train the agent
+
 ### Benchmark Implementation
 
 If you're interested in about how long it should take, in the solution code for the project, we were able to solve the project in fewer than 1800 episodes.
 
 <img src="img/benchmark_plot.png" width="500">
+
+
+
+### Other Resources
+
+- https://mohitd.github.io/2018/12/23/deep-rl-value-methods.html
