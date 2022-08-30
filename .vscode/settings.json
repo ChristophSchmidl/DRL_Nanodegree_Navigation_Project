@@ -1,0 +1,6 @@
+{
+  "python.defaultInterpreterPath": "/home/cs/Study/phd/repos/DRL_Nanodegree_Navigation_Project/venv/bin/python",
+  "terminal.integrated.env.osx": {"PYTHONPATH": "${workspaceFolder}"},
+  "terminal.integrated.env.linux": {"PYTHONPATH": "${workspaceFolder}"},
+  "terminal.integrated.env.windows": {"PYTHONPATH": "${workspaceFolder}"},
+}

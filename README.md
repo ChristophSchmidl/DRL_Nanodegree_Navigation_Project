@@ -31,7 +31,8 @@ The task is episodic, and in order to solve the environment, your agent must get
 
 ### Instructions
 
-- how to run the code in the repository, to train the agent
+After cloning the repository, you can create a virtual environment with ```python3 -m venv venv```. You can then switch into your virtual environment by executing ```source venv/bin/activate```.
+The next step is to install all dependencies by executing ```pip install ./python```. The python folder contains all dependencies that pip needs. 
 
 ### Benchmark Implementation
 
