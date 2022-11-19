@@ -56,28 +56,28 @@ Evaluation of the trained **DQN agent** over 25 episodes with deterministic beha
 #### Double Deep Q-Learning (DDQN)
 
 Training plot of the **DDQN algorithm**: 
-<img src="plots/Navigation_project_DDQNAgent_train.png" width="500">
+![DDQN-Training](plots/Navigation_project_DDQNAgent_train.png)
 
 Evaluation of the trained **DDQN agent** over 25 episodes with deterministic behavior:
-<img src="plots/Navigation_project_DDQNAgent_eval.png" width="500">
+![DDQN-Evaluation](plots/Navigation_project_DDQNAgent_eval.png)
 
 
 #### Dueling Deep Q-Learning (Dueling DQN)
 
 Training plot of the **Dueling DQN algorithm**: 
-<img src="plots/Navigation_project_DuelingDQNAgent_train.png" width="500">
+![Dueling-DQN-Training](plots/Navigation_project_DuelingDQNAgent_train.png)
 
 Evaluation of the trained **Dueling DQN agent** over 25 episodes with deterministic behavior:
-<img src="plots/Navigation_project_DuelingDQNAgent_eval.png" width="500">
+![Dueling-DQN-Evaluation](plots/Navigation_project_DuelingDQNAgent_eval.png)
 
 
 #### Dueling Double Deep Q-Learning (Dueling DDQN)
 
 Training plot of the **Dueling Double DQN algorithm**: 
-<img src="plots/Navigation_project_DuelingDDQNAgent_train.png" width="500">
+![Dueling-Double-DQN-Training](plots/Navigation_project_DuelingDDQNAgent_train.png)
 
 Evaluation of the trained **Dueling Double DQN agent** over 25 episodes with deterministic behavior:
-<img src="plots/Navigation_project_DuelingDDQNAgent_eval.png" width="500">
+![Dueling-Double-DQN-Evaluation](plots/Navigation_project_DuelingDDQNAgent_eval.png)
 
 ### Conclusion
 
