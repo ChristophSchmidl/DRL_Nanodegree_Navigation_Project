@@ -38,8 +38,53 @@ After these instructions, everything should be ready to go. However, if you enco
 
 ### Instructions
 
-After cloning the repository, you can create a virtual environment with ```python3 -m venv venv```. You can then switch into your virtual environment by executing ```source venv/bin/activate```.
-The next step is to install all dependencies by executing ```pip install ./python```. The python folder contains all dependencies that pip needs. 
+After cloning the repository and installing all necessary dependencies, you can train and evaluate the different agents through the command line. The file ``src/main.py`` is using the ``argparse`` library to parse the command line arguments. You can use the following command to see all available arguments:
+
+``python src/main.py --help``
+
+which outputs the following:
+
+```
+Deep Q-Learning - Navigation Project
+
+optional arguments:
+  -h, --help            show this help message and exit
+  -episodes EPISODES    Number of games/episodes to play. Default is 1000.
+  -lr LR                Learning rate for the optimizer. Default is 0.0001.
+  -gamma GAMMA          Discount factor for update equation
+  -epsilon_start EPSILON_START
+                        Starting value for epsilon. Default is 1.0.
+  -epsilon_min EPSILON_MIN
+                        Minimum value for epsilon in epsilon-greedy action selection. Default is 0.01.
+  -epsilon_dec EPSILON_DEC
+                        Rate of decay for epsilon. Default is 1e-5.
+  -buffer_size BUFFER_SIZE
+                        Maximum size of memory/replay buffer. Default is 30000.
+  -batch_size BATCH_SIZE
+                        Batch size for training. Default is 32.
+  -update_target UPDATE_TARGET
+                        Interval (of steps) for updating/replacing target network. Default is 1000.
+  -gpu GPU              GPU: 0 or 1. Default is 0.
+  -load_checkpoint LOAD_CHECKPOINT
+                        Load model checkpoint/weights. Default is False.
+  -model_path MODEL_PATH
+                        Path for model saving/loading. Default is data/
+  -plot_path PLOT_PATH  Path for saving plots. Default is plots/
+  -save_plot SAVE_PLOT  Save plot of eval or/and training phase. Default is True.
+  -algo ALGO            You can use the following algorithms. DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.
+  -eval EVAL            Evaluate the agent. Deterministic behavior. Default is False.
+  -visual_env VISUAL_ENV
+                        Using the visual environment. Default is False.
+```
+
+
+#### Training
+
+- python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True
+
+#### Evaluation
+
+- ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``
 
 ### Results
 

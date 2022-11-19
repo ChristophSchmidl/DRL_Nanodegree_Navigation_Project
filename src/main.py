@@ -43,39 +43,31 @@ if __name__ == '__main__':
     )
 
     # the hyphen makes the argument optional
-    parser.add_argument('-episodes', type=int, default=1000, help='Number of games/episodes to play')
-    parser.add_argument('-lr', type=float, default=0.0001, help='Learning rate for the optimizer')
+    parser.add_argument('-episodes', type=int, default=1000, help='Number of games/episodes to play. Default is 1000.')
+    parser.add_argument('-lr', type=float, default=0.0001, help='Learning rate for the optimizer. Default is 0.0001.')
     parser.add_argument('-gamma', type=float, default=0.99, help='Discount factor for update equation')
 
-    parser.add_argument('-epsilon_start', type=float, default=1.0, help='Starting value for epsilon')
-    parser.add_argument('-epsilon_min', type=float, default=0.01, help='Minimum value for epsilon in epsilon-greedy action selection')
-    parser.add_argument('-epsilon_dec', type=float, default=1e-5, help='Rate of decay for epsilon')
+    parser.add_argument('-epsilon_start', type=float, default=1.0, help='Starting value for epsilon. Default is 1.0.')
+    parser.add_argument('-epsilon_min', type=float, default=0.01, help='Minimum value for epsilon in epsilon-greedy action selection. Default is 0.01.')
+    parser.add_argument('-epsilon_dec', type=float, default=1e-5, help='Rate of decay for epsilon. Default is 1e-5.')
     
-    parser.add_argument('-buffer_size', type=int, default=30000, help='Maximum size of memory/replay buffer')
-    parser.add_argument('-batch_size', type=int, default=32, help='Batch size for training')
-    parser.add_argument('-update_target', type=int, default=1000, help='Interval (of steps) for updating/replacing target network')
+    parser.add_argument('-buffer_size', type=int, default=30000, help='Maximum size of memory/replay buffer. Default is 30000.')
+    parser.add_argument('-batch_size', type=int, default=32, help='Batch size for training. Default is 32.')
+    parser.add_argument('-update_target', type=int, default=1000, help='Interval (of steps) for updating/replacing target network. Default is 1000.')
 
-    '''
-    parser.add_argument('-env', type=str, default='PongNoFrameskip-v4', help='Atari environment.\nPongNoFrameskip-v4\n \
-                                  BreakoutNoFrameskip-v4\n \
-                                  SpaceInvadersNoFrameskip-v4\n \
-                                  EnduroNoFrameskip-v4\n \
-                                  AtlantisNoFrameskip-v4')
-    '''
-
-    parser.add_argument('-gpu', type=str, default='0', help='GPU: 0 or 1')
+    parser.add_argument('-gpu', type=str, default='0', help='GPU: 0 or 1. Default is 0.')
     parser.add_argument('-load_checkpoint', type=bool, default=False,
-                        help='load model checkpoint')
+                        help='Load model checkpoint/weights. Default is False.')
     parser.add_argument('-model_path', type=str, default='data/',
-                        help='path for model saving/loading')
+                        help='Path for model saving/loading. Default is data/')
     parser.add_argument('-plot_path', type=str, default='plots/',
-                        help='path for plot saving')
+                        help='Path for saving plots. Default is plots/')
     parser.add_argument('-save_plot', type=bool, default=True,
-                        help='save plot of eval or training')
+                        help='Save plot of eval or/and training phase. Default is True.')
     parser.add_argument('-algo', type=str, default='DQNAgent',
-                    help='DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent')
+                    help='You can use the following algorithms. DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.')
     parser.add_argument('-eval', type=bool, default=False,
-                        help='Evaluate the agent. Deterministic behavior.')
+                        help='Evaluate the agent. Deterministic behavior. Default is False.')
     parser.add_argument('-visual_env', type=bool, default=False,
                         help='Using the visual environment. Default is False.')
     args = parser.parse_args()
