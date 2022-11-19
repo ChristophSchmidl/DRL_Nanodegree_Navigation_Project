@@ -24,9 +24,14 @@ The task is episodic, and in order to solve the environment, your agent must get
 
 ### Getting Started
 
-- instructions for installing dependencies or downloading needed files.
+- Create a python virtual environment: ``python -m venv venv``
+- Activate the virtual environment: ``source venv/bin/activate``
+- Upgrade pip: ``pip install --upgrade pip``
+- Install dependencies from local folder: ``pip install ./python``
 
+After these instructions, everything should be ready to go. However, if you encounter compatibility issues with your CUDA version and Pytorch, then you could try to solve these problems by installing specific Pytorch versions which fit your CUDA version:
 
+``pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio===0.7.2 -f https://download.pytorch.org/whl/torch_stable.html``
 
 
 ### Instructions
