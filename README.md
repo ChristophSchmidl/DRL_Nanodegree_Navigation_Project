@@ -46,10 +46,12 @@ The next step is to install all dependencies by executing ```pip install ./pytho
 #### Deep Q-Learning (DQN)
 
 Training plot of the **DQN algorithm**: 
-<img src="plots/Navigation_project_DQNAgent_train.png" width="500">
+
+![DQN-Training](plots/Navigation_project_DQNAgent_train.png)
+
 
 Evaluation of the trained **DQN agent** over 25 episodes with deterministic behavior:
-<img src="plots/Navigation_project_DQNAgent_eval.png" width="500">
+![DQN-Evaluation](plots/Navigation_project_DQNAgent_eval.png)
 
 #### Double Deep Q-Learning (DDQN)
 
