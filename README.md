@@ -24,7 +24,7 @@ The task is episodic, and in order to solve the environment, your agent must get
 
 ### Getting Started
 
-This repository was implemented with Python version Python 3.9.13. The following steps should enable you to reproduce and test the the implementations.
+This repository was implemented with Python version 3.9.13. The following steps should enable you to reproduce and test  the implementation.
 
 - Create a python virtual environment: ``python -m venv venv``
 - Activate the virtual environment: ``source venv/bin/activate`` (if you are using Linux/Ubuntu)
@@ -71,7 +71,7 @@ optional arguments:
                         Path for model saving/loading. Default is data/
   -plot_path PLOT_PATH  Path for saving plots. Default is plots/
   -save_plot SAVE_PLOT  Save plot of eval or/and training phase. Default is True.
-  -algo ALGO            You can use the following algorithms. DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.
+  -algo ALGO            You can use the following algorithms: DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.
   -eval EVAL            Evaluate the agent. Deterministic behavior. Default is False.
   -visual_env VISUAL_ENV
                         Using the visual environment. Default is False.
@@ -80,50 +80,8 @@ optional arguments:
 
 #### Training
 
-- python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True
+- ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``
 
 #### Evaluation
 
 - ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``
-
-### Results
-
-#### Deep Q-Learning (DQN)
-
-Training plot of the **DQN algorithm**: 
-
-![DQN-Training](plots/Navigation_project_DQNAgent_train.png)
-
-
-Evaluation of the trained **DQN agent** over 25 episodes with deterministic behavior:
-![DQN-Evaluation](plots/Navigation_project_DQNAgent_eval.png)
-
-#### Double Deep Q-Learning (DDQN)
-
-Training plot of the **DDQN algorithm**: 
-![DDQN-Training](plots/Navigation_project_DDQNAgent_train.png)
-
-Evaluation of the trained **DDQN agent** over 25 episodes with deterministic behavior:
-![DDQN-Evaluation](plots/Navigation_project_DDQNAgent_eval.png)
-
-
-#### Dueling Deep Q-Learning (Dueling DQN)
-
-Training plot of the **Dueling DQN algorithm**: 
-![Dueling-DQN-Training](plots/Navigation_project_DuelingDQNAgent_train.png)
-
-Evaluation of the trained **Dueling DQN agent** over 25 episodes with deterministic behavior:
-![Dueling-DQN-Evaluation](plots/Navigation_project_DuelingDQNAgent_eval.png)
-
-
-#### Dueling Double Deep Q-Learning (Dueling DDQN)
-
-Training plot of the **Dueling Double DQN algorithm**: 
-![Dueling-Double-DQN-Training](plots/Navigation_project_DuelingDDQNAgent_train.png)
-
-Evaluation of the trained **Dueling Double DQN agent** over 25 episodes with deterministic behavior:
-![Dueling-Double-DQN-Evaluation](plots/Navigation_project_DuelingDDQNAgent_eval.png)
-
-### Conclusion
-
-Every algorithm was able to solve the navigation problem with an average score of 13+ over 100 consecutive episodes.
