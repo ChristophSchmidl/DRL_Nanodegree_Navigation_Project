@@ -14,12 +14,50 @@ The code is structured in the following way:
 
 - ``src/replay_buffer.py:`` Contains the implementation of the replay buffer that is used by the agents.
 
-- ``src/networks.py:`` Contains the implementation of two different neural networks that are used by the agents. The first one is a simple fully connected network called ``DeepQNetwork`` with Relu activations, MSELoss and RMSprop optimizer. The second one is a convolutional neural network with Relu activation, MSELoss and RMSprop optimizer. The other network called ``DuelingDeepQNetwork`` is an extension of the ``DeepQNetwork`` that uses a dueling architecture, i.e., it splits the network into two streams, one for the state value function and one for the advantage function. Both of them are simple fully-connected layers. The final Q-values are computed by combining the state value function and the advantage function.
+- ``src/networks.py:`` Contains the implementation of two different neural networks that are used by the agents. The first one is a simple fully connected network called ``DeepQNetwork`` with Relu activations, MSELoss and RMSprop optimizer. The other network called ``DuelingDeepQNetwork`` is an extension of the ``DeepQNetwork`` that uses a dueling architecture, i.e., it splits the network into two streams, one for the state value function and one for the advantage function. Both of them are simple fully-connected layers. The final Q-values are computed by combining the state value function and the advantage function.
 
 ## Learning algorithm
 
 - Implementation details of: Replay Buffer, inheritance structure of agents, DQN, Double DQN, 
 - Give chosen hyperparameters
+
+
+### Hyperparameters
+
+The following **hyperparamters** have been used for all DQN agents:
+
+| Name   | Value  |
+|---|---|
+|Learning rate (lr)   | 0.0001  |
+| Gamma  | 0.99  |
+|Epsilon (start)   | 1.0  |
+|Epsilon min (stop)   | 0.01 |
+|Epsilon decay  | 1e-5 |
+|(Replay) Buffer size  | 30000 |
+|Batch size  | 32 |
+|Update target (network every n steps)  | 1000 |
+
+Before mentioned values are also the default values for the ``main.py`` script. Therefore, you don't have to specify them explicitly if you want to reproduce the results.
+
+### Model architecture
+
+**DeepQNetwork**
+
+The ``DeepQNetwork`` is a simple three-layer fully connected network with Rectified Linear Unit (ReLU) activations, Mean Squared Error Loss(MSELoss) and Root Mean Squared Propagation (RMSprop) optimizer which is an extension of gradient descent. The input layer has 37 nodes for the 37 features with 128 output nodes. The first layer is followed by a ReLU activation. The second layer has 128 input nodes and 64 output nodes and is also followed by a ReLU activation. The third layer has 64 input nodes and 4 output nodes for every possible action. The output layer is the Q-value for each action. The network is implemented in ``src/networks.py``.
+
+The following figure shows the network architecture:
+
+![DeepQNetwork](/img/DeepQNetwork.onnx.png)
+
+Note: ``Gemm`` stands for General matrix multiplication (dense layer/fully connected layer).
+
+**DuelingDeepQNetwork**
+
+The ``DuelingDeepQNetwork`` is an extension of the ``DeepQNetwork`` that uses a dueling architecture, i.e., it splits the network into two streams, one for the state value function and one for the advantage function (see image below). The value function is responsible for finding the value of a given set of states (single, scalar output in this case). The advantage function is responsible for finding the advantage of each action given a state. **Note**: It seems that I forgot the ReLU activation after the second layer as it was done in the DeepQNetwork architecture. It would be interesting to see if the performance of the DuelingDeepQNetwork would improve if I would add the ReLU activation.
+
+![DuelingDeepQNetwork](/img/DuelingDeepQNetwork.onnx.png)
+
+
 
 ## Plot of rewards
 

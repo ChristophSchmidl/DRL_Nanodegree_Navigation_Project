@@ -73,6 +73,7 @@ class DuelingDeepQNetwork(nn.Module):
         state = self.fc1(state)
         state = F.relu(state)
         state = self.fc2(state)
+        #state = F.relu(state) # No need to apply relu here? Run again to check if performance is better?
 
         # Dueling DQN adjustment
         V = self.V(state)

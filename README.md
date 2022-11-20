@@ -80,8 +80,12 @@ optional arguments:
 
 #### Training
 
+TODO: Add training instructions
+
 - ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``
 
 #### Evaluation
+
+TODO: Add evaluation instructions
 
 - ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``

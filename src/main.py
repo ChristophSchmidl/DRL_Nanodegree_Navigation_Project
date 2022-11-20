@@ -65,7 +65,7 @@ if __name__ == '__main__':
     parser.add_argument('-save_plot', type=bool, default=True,
                         help='Save plot of eval or/and training phase. Default is True.')
     parser.add_argument('-algo', type=str, default='DQNAgent',
-                    help='You can use the following algorithms. DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.')
+                    help='You can use the following algorithms: DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.')
     parser.add_argument('-eval', type=bool, default=False,
                         help='Evaluate the agent. Deterministic behavior. Default is False.')
     parser.add_argument('-visual_env', type=bool, default=False,
