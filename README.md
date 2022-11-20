@@ -89,3 +89,8 @@ TODO: Add training instructions
 TODO: Add evaluation instructions
 
 - ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``
+
+
+### Report
+
+If you are interested in the results and a more detailed report, please have a look at [report](REPORT.md).
