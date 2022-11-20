@@ -18,9 +18,33 @@ The code is structured in the following way:
 
 ## Learning algorithm
 
-- Implementation details of: Replay Buffer, inheritance structure of agents, DQN, Double DQN, 
-- Give chosen hyperparameters
+Every DQN agent (off-policy, model-free) uses almost the same learning algorithm that uses
 
+- a **replay buffer** to store trajectories of experiences (state, action, reward, next_state, done) and
+- a **target network** which is a copy of the policy network that is updated every ``update_target`` steps.
+
+The replay buffer is used to sample a batch of experiences that is used to train the policy network. The usage of a replay buffer ensures that experiences can be used more than once through repeated uniform sampling and decorrelates the data so it looks more i.i.d. 
+
+The target network is used to compute the target Q-values for the loss function. The target network is updated every ``update_target`` steps to ensure that the target Q-values are not too far away from the current Q-values. This is important to ensure that the agent does not overestimate the Q-values (based on the max operator and a possible tie between actions). Further information about this overestimation problem can be found in the paper ``Issues in Using Function Approximation for Reinforcement Learning`` by Thrun and Schwartz (1993).
+
+The pseude code for the original DQN algorithm is as follows:
+```
+1. Initialize replay memory D to capacity N (in our case 30000)
+2. Initialize action-value function Q (policy network) with random weights
+3. Initialize target action-value function Q' (target network) with weights from Q
+4. For each episode:
+    1. Initialize the starting state
+    2. For each time step:
+        1. Selection an action a_t using epsilon-greedy strategy with respect to Q
+        2. Execute action in emulator and observe reward and next state
+        3. Store experience (state, action, reward, next_state, done) in D
+        4. Sample random minibatch of experiences from D
+        5. Pass minibatch through Q (policy) network to get Q values
+        7. Compute loss between output q values and target q values
+            1. Requires a pass to the target network for the next state
+        8. Update Q network weights using backpropagation according to the loss
+        9. Update target network weights every ``update_target`` steps
+```
 
 ### Hyperparameters
 
