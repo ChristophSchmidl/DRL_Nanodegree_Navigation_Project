@@ -80,15 +80,21 @@ optional arguments:
 
 #### Training
 
-TODO: Add training instructions
+If you want to start training the DQN agents from scratch with default hyperparamters, you can use the following command:
 
-- ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``
+- ``python src/main.py -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES>``
 
 #### Evaluation
 
-TODO: Add evaluation instructions
+If you want to evaluate the trained agents in non-visual mode (fast), you can use the following command:
 
-- ``python src/main.py -algo DuelingDDQNAgent -episodes 10 -eval True -visual_env True``
+- ``python src/main.py -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES> -eval True``
+
+The above command simply loads the appropriate model weights, sets the epsilon value to 0.0 to enforce a deterministic behavior (no exploration, pure exploitation) and runs the agent in non-visual mode.
+
+If you want to see the trained agents in action in visual mode (slow), you can use the following command:
+
+- ``python src/main.py -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES> -eval True -visual_env True``
 
 
 ### Report
