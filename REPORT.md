@@ -51,7 +51,7 @@ The pseudo code for the original DQN algorithm is as follows:
 **Double DQN**
 
 
-Double DQN tackles the problem that the agent does not overestimate the Q-values (based on the max operator and a possible tie between actions). Further information about this overestimation problem can be found in the paper ``Issues in Using Function Approximation for Reinforcement Learning`` by Thrun and Schwartz (1993). The idea is to use two separate networks, one for the policy and one for the target just as DQN does. The policy network is used to select the best action for the next state and the target network calculates the target Q value of taking that action at the next state. 
+Double DQN tackles the problem that the agent may overestimate the Q-values (based on the max operator and a possible tie between actions). Further information about this overestimation problem can be found in the paper ``Issues in Using Function Approximation for Reinforcement Learning`` by Thrun and Schwartz (1993). The idea is to use two separate networks, one for the policy and one for the target just as DQN does. The policy network is used to select the best action for the next state and the target network calculates the target Q value of taking that action at the next state. 
 
 **Dueling DQN**
 
