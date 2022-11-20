@@ -25,9 +25,11 @@ Every DQN agent (off-policy, model-free) uses almost the same learning algorithm
 
 The replay buffer is used to sample a batch of experiences that is used to train the policy network. The usage of a replay buffer ensures that experiences can be used more than once through repeated uniform sampling and decorrelates the data so it looks more i.i.d. 
 
-The target network is used to compute the target Q-values for the loss function. The target network is updated every ``update_target`` steps to ensure that the target Q-values are not too far away from the current Q-values. This is important to ensure that the agent does not overestimate the Q-values (based on the max operator and a possible tie between actions). Further information about this overestimation problem can be found in the paper ``Issues in Using Function Approximation for Reinforcement Learning`` by Thrun and Schwartz (1993).
+The target network is used to compute the target Q-values for the loss function. The target network is updated every ``update_target`` steps to ensure that the target Q-values are not too far away from the current Q-values. By using a separate network (target network) that estimates the TD target for the TD error and is fixed for some time, the learning algorithm is more stable.
 
-The pseude code for the original DQN algorithm is as follows:
+
+
+The pseudo code for the original DQN algorithm is as follows:
 ```
 1. Initialize replay memory D to capacity N (in our case 30000)
 2. Initialize action-value function Q (policy network) with random weights
@@ -35,7 +37,7 @@ The pseude code for the original DQN algorithm is as follows:
 4. For each episode:
     1. Initialize the starting state
     2. For each time step:
-        1. Selection an action a_t using epsilon-greedy strategy with respect to Q
+        1. Selection an action using epsilon-greedy strategy with respect to Q
         2. Execute action in emulator and observe reward and next state
         3. Store experience (state, action, reward, next_state, done) in D
         4. Sample random minibatch of experiences from D
@@ -45,6 +47,16 @@ The pseude code for the original DQN algorithm is as follows:
         8. Update Q network weights using backpropagation according to the loss
         9. Update target network weights every ``update_target`` steps
 ```
+
+**Double DQN**
+
+
+Double DQN tackles the problem that the agent does not overestimate the Q-values (based on the max operator and a possible tie between actions). Further information about this overestimation problem can be found in the paper ``Issues in Using Function Approximation for Reinforcement Learning`` by Thrun and Schwartz (1993). The idea is to use two separate networks, one for the policy and one for the target just as DQN does. The policy network is used to select the best action for the next state and the target network calculates the target Q value of taking that action at the next state. 
+
+**Dueling DQN**
+
+Dueling DQN splits up the output in two different streams, namely the state value function (V(s)) and the advantage function (A(s,a)). The value function tells us how "valuable" a certain state is, while the advantage function tells us how much better it is to take a certain action versus all other possible actions in that staet. The final Q-values are computed by combining the state value function and the advantage function. 
+
 
 ### Hyperparameters
 
@@ -59,7 +71,7 @@ The following **hyperparamters** have been used for all DQN agents:
 |Epsilon decay  | 1e-5 |
 |(Replay) Buffer size  | 30000 |
 |Batch size  | 32 |
-|Update target (network every n steps)  | 1000 |
+|Update target (network every n steps) / Tau  | 1000 |
 
 Before mentioned values are also the default values for the ``main.py`` script. Therefore, you don't have to specify them explicitly if you want to reproduce the results.
 
