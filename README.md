@@ -33,14 +33,14 @@ This repository was implemented with Python version 3.9.13. The following steps 
 
 After these instructions, everything should be ready to go. However, if you encounter compatibility issues with your CUDA version and Pytorch, then you could try to solve these problems by installing specific Pytorch versions that fit your CUDA version. In my case, I could resolve it using the following command:
 
-``pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio===0.7.2 -f https://download.pytorch.org/whl/torch_stable.html``
+``pip install torch==1.7.1+cu110 -f https://download.pytorch.org/whl/torch_stable.html``
 
 
 ### Instructions
 
 After cloning the repository and installing all necessary dependencies, you can train and evaluate the different agents through the command line. The file ``src/main.py`` is using the ``argparse`` library to parse the command line arguments. You can use the following command to see all available arguments:
 
-``python src/main.py --help``
+``python -m src.main --help``
 
 which outputs the following:
 
@@ -82,19 +82,19 @@ optional arguments:
 
 If you want to start training the DQN agents from scratch with default hyperparamters, you can use the following command:
 
-- ``python src/main.py -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES>``
+- ``python -m src.main -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES>``
 
 #### Evaluation
 
 If you want to evaluate the trained agents in non-visual mode (fast), you can use the following command:
 
-- ``python src/main.py -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES> -eval True``
+- ``python -m src.main -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES> -use_eval_mode``
 
 The above command simply loads the appropriate model weights, sets the epsilon value to 0.0 to enforce a deterministic behavior (no exploration, pure exploitation) and runs the agent in non-visual mode.
 
 If you want to see the trained agents in action in visual mode (slow), you can use the following command:
 
-- ``python src/main.py -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES> -eval True -visual_env True``
+- ``python src/main.py -algo <AGENT_NAME> -episodes <NUMBER_OF_EPISODES> -use_eval_mode -use_visual_env``
 
 
 ### Report

@@ -7,6 +7,25 @@ import time
 import src.agents as Agents
 
 
+def parse_bool(s: str) -> bool:
+    '''
+    Small helper function for argparse to convert string to boolean.
+    Note: Argparse has this weird behavior when using bool as type,
+    it does not behave as expected. You can also avoid using this helper 
+    function by just using action='store_true' with choices=["true", "false"]? because then you do not have
+    to specify any argument for that specific flag, e.g.:
+    - parser.add_argument('-enable_stuff', action='store_true')
+    - parser.add_argument('-disable_stuff', action='store_false', dest='enable_stuff')
+    - python -m src.main -enable_stuff
+    OR:
+    - parser.add_argument('-enable_stuff', type=parse_bool, default=False)
+    - python -m src.main -enable_stuff True
+    '''
+    try:
+        return {'true': True, 'false': False}[s.lower()]
+    except KeyError:
+        raise argparse.ArgumentTypeError(f"Expected true/false, git: {s}")
+
 def print_device_info():
     device = torch.device('cuda' if torch.cuda.is_available() else 'cpu')
     print(f"Using Pytorch version {torch.__version__} on device {device}")
@@ -56,19 +75,19 @@ if __name__ == '__main__':
     parser.add_argument('-update_target', type=int, default=1000, help='Interval (of steps) for updating/replacing target network. Default is 1000.')
 
     parser.add_argument('-gpu', type=str, default='0', help='GPU: 0 or 1. Default is 0.')
-    parser.add_argument('-load_checkpoint', type=bool, default=False,
+    parser.add_argument('-load_checkpoint', action='store_true',
                         help='Load model checkpoint/weights. Default is False.')
     parser.add_argument('-model_path', type=str, default='data/',
                         help='Path for model saving/loading. Default is data/')
     parser.add_argument('-plot_path', type=str, default='plots/',
                         help='Path for saving plots. Default is plots/')
-    parser.add_argument('-save_plot', type=bool, default=True,
-                        help='Save plot of eval or/and training phase. Default is True.')
+    parser.add_argument('-save_plot', action='store_true',
+                        help='Save plot of eval or/and training phase. Default is False.')
     parser.add_argument('-algo', type=str, default='DQNAgent',
                     help='You can use the following algorithms: DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.')
-    parser.add_argument('-eval', type=bool, default=False,
+    parser.add_argument('-use_eval_mode', action='store_true',
                         help='Evaluate the agent. Deterministic behavior. Default is False.')
-    parser.add_argument('-visual_env', type=bool, default=False,
+    parser.add_argument('-use_visual_env', action='store_true',
                         help='Using the visual environment. Default is False.')
     args = parser.parse_args()
 
@@ -78,7 +97,7 @@ if __name__ == '__main__':
 
     print_device_info()
 
-    if args.visual_env:
+    if args.use_visual_env:
         env = UnityEnvironment(file_name="src/Banana_Linux/Banana.x86_64")
     else:
         env = UnityEnvironment(file_name="src/Banana_Linux_NoVis/Banana.x86_64")
@@ -121,7 +140,7 @@ if __name__ == '__main__':
     )
 
     # If in evaluation mode
-    if args.eval:
+    if args.use_eval_mode:
         print("Evaluating agent...")
         # This leads to a deterministic behavior without exploration
         agent.epsilon = 0.0
@@ -143,7 +162,7 @@ if __name__ == '__main__':
         done = False
         score = 0
 
-        if args.eval and args.visual_env:
+        if args.use_eval_mode and args.use_visual_env:
             banana_env = env.reset(train_mode=False)[brain_name] # Slower environment for visualization
         else:
             banana_env = env.reset(train_mode=True)[brain_name]
@@ -179,7 +198,7 @@ if __name__ == '__main__':
 
         epsilon_history.append(agent.epsilon)
         
-        if avg_score >= 13 and not args.eval:
+        if avg_score >= 13 and not args.use_eval_mode:
             solution_txt = f"Solved in {i} episodes with an average reward score of {avg_score:.2f} of the last 100 episodes"
             print(solution_txt)
             break
@@ -193,7 +212,7 @@ if __name__ == '__main__':
     #ax = fig.add_subplot(111)
     plt.plot(np.arange(len(episode_rewards)), episode_rewards)
 
-    if args.eval:
+    if args.use_eval_mode:
         plt.title(f"Navigation project: {args.algo} - Evaluation") 
     else:
         plt.title(f"Navigation project: {args.algo} - Training") 
@@ -204,7 +223,7 @@ if __name__ == '__main__':
     plt.grid(True)
 
     if args.save_plot:
-        if args.eval:
+        if args.use_eval_mode:
             plt.savefig(f"{args.plot_path}/Navigation_project_{args.algo}_eval.png")
         else:
             plt.savefig(f"{args.plot_path}/Navigation_project_{args.algo}_train.png")
