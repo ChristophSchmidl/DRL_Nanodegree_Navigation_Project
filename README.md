@@ -65,16 +65,14 @@ optional arguments:
   -update_target UPDATE_TARGET
                         Interval (of steps) for updating/replacing target network. Default is 1000.
   -gpu GPU              GPU: 0 or 1. Default is 0.
-  -load_checkpoint LOAD_CHECKPOINT
-                        Load model checkpoint/weights. Default is False.
+  -load_checkpoint      Load model checkpoint/weights. Default is False.
   -model_path MODEL_PATH
                         Path for model saving/loading. Default is data/
   -plot_path PLOT_PATH  Path for saving plots. Default is plots/
-  -save_plot SAVE_PLOT  Save plot of eval or/and training phase. Default is True.
+  -save_plot            Save plot of eval or/and training phase. Default is False.
   -algo ALGO            You can use the following algorithms: DQNAgent/DDQNAgent/DuelingDQNAgent/DuelingDDQNAgent. Default is DQNAgent.
-  -eval EVAL            Evaluate the agent. Deterministic behavior. Default is False.
-  -visual_env VISUAL_ENV
-                        Using the visual environment. Default is False.
+  -use_eval_mode        Evaluate the agent. Deterministic behavior. Default is False.
+  -use_visual_env       Using the visual environment. Default is False.
 ```
 
 
